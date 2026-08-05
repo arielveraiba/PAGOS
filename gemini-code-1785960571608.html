@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I.F Soluciones Automotrices | Datos de Pago</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #04142D;
+            --text-dark: #04142D;
+            --orange-badge: #F17228;
+            --guayaquil-color: #D6006E;
+            --pichincha-color: #FFD400;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: white;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* --- ENCABEZADO --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .title-area h2 {
+            color: var(--text-dark);
+            font-size: 22px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .title-area h1 {
+            color: var(--text-dark);
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 10px;
+            margin-left: 25px; /* Empuja "Pago" un poco a la derecha según la imagen */
+        }
+
+        .badge {
+            background-color: var(--orange-badge);
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 6px 20px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .logo-area img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        /* --- SECCIÓN DE BANCOS --- */
+        .bank-section {
+            margin-top: 25px;
+        }
+
+        .bank-title {
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .title-guayaquil { color: var(--guayaquil-color); }
+        .title-pichincha { color: var(--pichincha-color); }
+
+        .bank-grid {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 15px;
+        }
+
+        /* Cajas de Logos */
+        .bank-logo-box {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .box-guayaquil { background-color: var(--guayaquil-color); }
+        .box-pichincha { background-color: var(--pichincha-color); }
+
+        /* Para hacer el logo de Guayaquil blanco sobre fondo magenta */
+        .logo-guayaquil {
+            width: 100%;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Para oscurecer el símbolo de Pichincha y que contraste con el amarillo */
+        .logo-pichincha {
+            width: 80%;
+            filter: grayscale(100%) brightness(0.2); 
+        }
+
+        /* Datos */
+        .bank-data {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .data-row-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .label {
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .label-guayaquil { color: var(--guayaquil-color); }
+        .label-pichincha { color: var(--pichincha-color); }
+
+        .value {
+            color: var(--text-dark);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .value:hover {
+            opacity: 0.7;
+        }
+
+        .copy-icon {
+            font-size: 14px;
+            filter: grayscale(100%);
+            opacity: 0.5;
+        }
+
+        /* Línea divisoria */
+        .divider {
+            height: 2px;
+            background-color: #e0e0e0;
+            margin: 20px 0;
+            border-radius: 2px;
+        }
+
+        /* --- TOAST NOTIFICATION --- */
+        .toast {
+            position: fixed;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-dark);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1000;
+        }
+
+        .toast.show {
+            bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <!-- Encabezado -->
+    <div class="header">
+        <div class="title-area">
+            <h2>Datos de</h2>
+            <h1>Pago</h1>
+            <div class="badge">Transferencia</div>
+        </div>
+        <div class="logo-area">
+            <img src="!DOCTYPE html html lang=es head meta charset=UTF-8 meta name=viewport content=width=device-width, initial-scale=1.0 titleI.F Soluciones Automotrices  Datos de Pagotitle link.png" alt="I.F Soluciones Automotrices">
+        </div>
+    </div>
+
+    <!-- Sección Banco Guayaquil -->
+    <div class="bank-section">
+        <h3 class="bank-title title-guayaquil">CUENTA DE AHORRO</h3>
+        <div class="bank-grid">
+            <div class="bank-logo-box box-guayaquil">
+                <img src="Logo_bg_2020.png" class="logo-guayaquil" alt="Banco Guayaquil">
+            </div>
+            
+            <div class="bank-data">
+                <div class="data-row-split">
+                    <div>
+                        <div class="label label-guayaquil">Nro. de cuenta</div>
+                        <div class="value" onclick="copyText('0044204962')">0044204962 <span class="copy-icon">📋</span></div>
+                    </div>
+                    <div>
+                        <div class="label label-guayaquil">N°. de Cédula</div>
+                        <div class="value" onclick="copyText('0927405092')">0927405092 <span class="copy-icon">📋</span></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="label label-guayaquil">Beneficiario</div>
+                    <div class="value" onclick="copyText('Isaac Fuentes Alvarado')">Isaac Fuentes Alvarado <span class="copy-icon">📋</span></div>
+                </div>
+                <div>
+                    <div class="label label-guayaquil">Correo</div>
+                    <div class="value" onclick="copyText('i.f.solucionesautomotrices@outlook.com')">i.f.solucionesautomotrices@outlook.com <span class="copy-icon">📋</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Separador -->
+    <div class="divider"></div>
+
+    <!-- Sección Banco Pichincha -->
+    <div class="bank-section">
+        <h3 class="bank-title title-pichincha">CUENTA CORRIENTE</h3>
+        <div class="bank-grid">
+            <div class="bank-logo-box box-pichincha">
+                <img src="Banco-Pichincha.png" class="logo-pichincha" alt="Banco Pichincha">
+            </div>
+            
+            <div class="bank-data">
+                <div class="data-row-split">
+                    <div>
+                        <div class="label label-pichincha">Nro. de cuenta</div>
+                        <div class="value" onclick="copyText('2100232982')">2100232982 <span class="copy-icon">📋</span></div>
+                    </div>
+                    <div>
+                        <div class="label label-pichincha">N°. de Cedula</div>
+                        <div class="value" onclick="copyText('0927405092')">0927405092 <span class="copy-icon">📋</span></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="label label-pichincha">Beneficiario</div>
+                    <div class="value" onclick="copyText('Isaac Fuentes Alvarado')">Isaac Fuentes Alvarado <span class="copy-icon">📋</span></div>
+                </div>
+                <div>
+                    <div class="label label-pichincha">Correo</div>
+                    <div class="value" onclick="copyText('i.f.solucionesautomotrices@outlook.com')">i.f.solucionesautomotrices@outlook.com <span class="copy-icon">📋</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Notificación (Toast) -->
+<div class="toast" id="toast">
+    ✅ Dato copiado al portapapeles
+</div>
+
+<script>
+    function copyText(texto) {
+        navigator.clipboard.writeText(texto).then(() => {
+            let toast = document.getElementById("toast");
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 2000);
+        }).catch(err => {
+            console.error('Error al copiar: ', err);
+            alert("No se pudo copiar. Intenta seleccionarlo manualmente.");
+        });
+    }
+</script>
+
+</body>
+</html>
