@@ -27,7 +27,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px; /* Reducido para móviles */
         }
 
         .card {
@@ -101,6 +101,7 @@
             display: grid;
             grid-template-columns: 100px 1fr;
             gap: 15px;
+            align-items: start;
         }
 
         /* Cajas de Logos */
@@ -111,6 +112,7 @@
             justify-content: center;
             align-items: center;
             padding: 10px;
+            border-radius: 12px;
         }
 
         .box-guayaquil { background-color: var(--guayaquil-color); }
@@ -156,6 +158,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            word-break: break-all;
         }
 
         .value:hover {
@@ -196,6 +199,53 @@
         .toast.show {
             bottom: 30px;
         }
+
+        /* =========================================
+           ADAPTACIÓN PARA CELULARES (MOBILE FIRST)
+           ========================================= */
+        @media (max-width: 480px) {
+            .card {
+                padding: 20px;
+                border-radius: 20px;
+            }
+
+            .header {
+                align-items: flex-start;
+            }
+
+            .title-area h2 {
+                font-size: 18px;
+            }
+
+            .title-area h1 {
+                font-size: 36px; /* Letra más pequeña */
+                margin-left: 10px; /* Menos margen */
+            }
+
+            .logo-area img {
+                width: 80px; /* Logo más pequeño */
+                height: 80px;
+            }
+
+            .bank-grid {
+                grid-template-columns: 75px 1fr; /* Caja del banco más angosta */
+                gap: 12px;
+            }
+
+            .bank-logo-box {
+                width: 75px;
+                height: 75px;
+            }
+
+            .data-row-split {
+                grid-template-columns: 1fr; /* Pone los datos uno debajo del otro */
+                gap: 5px;
+            }
+
+            .value {
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -209,8 +259,8 @@
             <div class="badge">Transferencia</div>
         </div>
         <div class="logo-area">
-            <!-- Logo Principal Corregido -->
-            <img src="https://drive.google.com/uc?export=view&id=1lt0O4VKOrfseF7VSYnk8TrNH0f1L5Guh" alt="I.F Soluciones Automotrices">
+            <!-- Imagen cargada desde GitHub -->
+            <img src="logo.png" alt="I.F Soluciones Automotrices">
         </div>
     </div>
 
@@ -219,8 +269,8 @@
         <h3 class="bank-title title-guayaquil">CUENTA DE AHORRO</h3>
         <div class="bank-grid">
             <div class="bank-logo-box box-guayaquil">
-                <!-- Logo Guayaquil Corregido (Con su clase) -->
-                <img src="https://drive.google.com/uc?export=view&id=1DRYPp6TX76AWHHCAcMwqqlUe5199-nEu" class="logo-guayaquil" alt="Banco Guayaquil">
+                <!-- Imagen cargada desde GitHub -->
+                <img src="guayaquil.png" class="logo-guayaquil" alt="Banco Guayaquil">
             </div>
             
             <div class="bank-data">
@@ -254,8 +304,8 @@
         <h3 class="bank-title title-pichincha">CUENTA CORRIENTE</h3>
         <div class="bank-grid">
             <div class="bank-logo-box box-pichincha">
-                <!-- Logo Pichincha Corregido (Con su clase) -->
-                <img src="https://drive.google.com/uc?export=view&id=1v7D2iapl1o2u-RcS25Neq3HLorAfxRM1" class="logo-pichincha" alt="Banco Pichincha">
+                <!-- Imagen cargada desde GitHub -->
+                <img src="pichincha.png" class="logo-pichincha" alt="Banco Pichincha">
             </div>
             
             <div class="bank-data">
